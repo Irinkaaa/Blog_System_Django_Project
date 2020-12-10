@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block site_title %}All blogs{% endblock %}
+{% block site_content %}
+    <ul>
+        {% for blog in blog_list %}
+            <li>
+                {{ blog.name }}
+{#            <a href="{% url 'details' blog.id %}">See details</a>#}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
