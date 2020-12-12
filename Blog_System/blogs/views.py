@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic as views
 from Blog_System.blogs.models import Blog
 
@@ -9,8 +9,11 @@ class BlogsListView(views.ListView):
 
 
 class BlogDetailView(views.DetailView):
-    pass
+    template_name = 'blogs/details.html'
+    model = Blog
 
 
-class CreateBlogView(views.CreateView):
-    pass
+class CreateBlogView(LoginRequiredMixin, views.CreateView):
+    model = Blog
+    template_name = 'blogs/create.html'
+    fields = ('name', 'description')
