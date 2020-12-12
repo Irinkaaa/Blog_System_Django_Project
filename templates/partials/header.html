@@ -1,3 +1,4 @@
+{% load create_blog %}
 <header class="site-header">
     <div class="site-content header-wrapper">
         <h1>SoftUni Blogs</h1>
@@ -6,10 +7,11 @@
                 <li>
                     <a href="{% url 'index' %}">Home</a>
                 </li>
-                <li>
-                    <a href="{% url 'blog create' %}">Create blog</a>
-                </li>
+                {% create_blog user %}
                 {% if user.is_authenticated %}
+                    <li>
+                    <a href="#">{{ user.username }}</a>
+                    </li>
                     <li>
                         <a href="{% url 'sign out' %}">Sign out</a>
                     </li>

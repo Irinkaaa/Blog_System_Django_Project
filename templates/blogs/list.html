@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load create_blog %}
 {% block site_title %}All blogs{% endblock %}
 {% block site_content %}
-    <a href="{% url 'blog create' %}">Create a blog</a>
+    {% create_blog user %}
     <ul>
         {% for blog in blog_list %}
             <li>

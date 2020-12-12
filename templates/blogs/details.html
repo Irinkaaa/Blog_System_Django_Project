@@ -2,4 +2,28 @@
 {% block site_title %}{{ blog.name }}{% endblock %}
 {% block site_content %}
     {{ blog.name }}
+    <ul>
+        {% for post in blog.post_set.all %}
+            <li>
+                {{ post.title }}
+            </li>
+        {% endfor %}
+    </ul>
+    <script>
+        fetch('/api/blogs/', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+            body: JSON.stringify({
+                title: 'First post!',
+                text: 'It works!',
+                blog_id: 1,
+            })
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
+    </script>
 {% endblock %}
